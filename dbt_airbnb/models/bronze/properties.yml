@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: bronze_bookings #  Must match the filename of a model -- including case sensitivity.
+    config:
+      materialized: table
+#      schema: bronze
+
+  - name: bronze_listings
+    config:
+      materialized: table
+#      schema: bronze
+
+  - name: bronze_hosts
+    config:
+      materialized: table
+#      schema: bronze
