@@ -84,7 +84,7 @@ The repo also shows:
 - Snowflake file format + stage + `COPY INTO` loading pattern for CSV ingestion
 - dbt project configuration with separate `bronze`, `silver`, and `gold` schemas
 - dbt source definitions pointing to the `AIRBNB.STAGING` schema
-- gold models including an `obt.sql` and `fact.sql` model. :contentReference[oaicite:1]{index=1}
+- gold models including an `obt.sql` and `fact.sql` model.
 
 ---
 
@@ -107,7 +107,7 @@ Models:
 - `bronze_hosts`
 - `bronze_listings`
 
-These models are configured as **incremental** and load only records with `CREATED_AT` greater than the maximum already loaded in the target table. This reduces unnecessary full refreshes and makes the pipeline more efficient. :contentReference[oaicite:2]{index=2}
+These models are configured as **incremental** and load only records with `CREATED_AT` greater than the maximum already loaded in the target table. This reduces unnecessary full refreshes and makes the pipeline more efficient. 
 
 ### Silver layer
 The Silver layer cleans and enriches the bronze data.
@@ -122,8 +122,7 @@ Key transformations include:
 - standardizing host names
 - classifying host response performance into rating buckets
 - categorizing listing price ranges into tags such as low, medium, and high
-- applying unique keys like `BOOKING_ID`, `HOST_ID`, and `LISTING_ID` for model integrity. :contentReference[oaicite:3]{index=3}
-
+- applying unique keys like `BOOKING_ID`, `HOST_ID`, and `LISTING_ID` for model integrity. 
 ### Gold layer
 The Gold layer contains business-ready analytical models.
 
@@ -131,17 +130,17 @@ Models:
 - `obt.sql` → One Big Table combining bookings, listings, and hosts
 - `fact.sql` → a fact-style model derived from the OBT
 
-The OBT joins the silver models into a denormalized analytics table, while the fact model exposes core measures and dimensions needed for downstream reporting. :contentReference[oaicite:4]{index=4}
+The OBT joins the silver models into a denormalized analytics table, while the fact model exposes core measures and dimensions needed for downstream reporting. 
 
 ---
 
 ## Key transformations implemented
 
 ### 1. Incremental ingestion
-The bronze models use dbt incremental materialization and filter new rows using `CREATED_AT`, which is a common pattern in scalable ELT pipelines. :contentReference[oaicite:5]{index=5}
+The bronze models use dbt incremental materialization and filter new rows using `CREATED_AT`, which is a common pattern in scalable ELT pipelines. 
 
 ### 2. Derived revenue logic
-In `silver_bookings`, total booking value is calculated using nights booked, booking amount, cleaning fee, and service fee. A custom macro is used to calculate rounded values. :contentReference[oaicite:6]{index=6}
+In `silver_bookings`, total booking value is calculated using nights booked, booking amount, cleaning fee, and service fee. A custom macro is used to calculate rounded values. 
 
 ### 3. Host quality enrichment
 In `silver_hosts`, host response rate is translated into a business-friendly rating scale such as:
@@ -149,10 +148,10 @@ In `silver_hosts`, host response rate is translated into a business-friendly rat
 - VERY GOOD
 - GOOD
 - FAIR
-- POOR :contentReference[oaicite:7]{index=7}
+- POOR 
 
 ### 4. Price segmentation
-In `silver_listings`, listing prices are categorized into pricing buckets using a reusable dbt macro. :contentReference[oaicite:8]{index=8}
+In `silver_listings`, listing prices are categorized into pricing buckets using a reusable dbt macro. 
 
 ### 5. Reusable dbt macros
 The project includes custom macros such as:
@@ -160,10 +159,10 @@ The project includes custom macros such as:
 - `tag.sql`
 - `trim.sql`
 
-This shows modular design and reusable transformation logic rather than repeating SQL patterns in multiple models. :contentReference[oaicite:9]{index=9}
+This shows modular design and reusable transformation logic rather than repeating SQL patterns in multiple models. 
 
 ### 6. One Big Table modeling
-The Gold OBT combines bookings, listings, and hosts into a single denormalized model for easier analyst access and simplified exploration. :contentReference[oaicite:10]{index=10}
+The Gold OBT combines bookings, listings, and hosts into a single denormalized model for easier analyst access and simplified exploration. 
 
 ### 7. Fact model for reporting
 The final fact table exposes analytics-friendly fields like:
@@ -175,7 +174,7 @@ The final fact table exposes analytics-friendly fields like:
 - bedrooms
 - bathrooms
 - price_per_night
-- response_rate :contentReference[oaicite:11]{index=11}
+- response_rate 
 
 ---
 
