@@ -1,9 +1,13 @@
 # Airbnb Data Pipeline with Snowflake + dbt
 
 ## Overview
+
 This project demonstrates an end-to-end modern analytics engineering workflow for Airbnb-style booking data using **Snowflake** and **dbt**. It is designed to show how raw operational data can be transformed into clean, business-ready datasets for analytics, reporting, and downstream decision-making.
 
 The pipeline follows a layered data architecture:
+
+<img width="808" height="451" alt="Airbnb" src="https://github.com/user-attachments/assets/f87dd5a7-4059-4519-8770-5359b3fc20ec" />
+
 - **Bronze layer** for raw ingestion
 - **Silver layer** for cleaned and enriched transformations
 - **Gold layer** for analytics-ready outputs, including both a **One Big Table (OBT)** and a **star-schema-oriented fact model**
